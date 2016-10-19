@@ -9,14 +9,13 @@
       "funny"
   ],
   "activationCommands": {
-    "atom-workspace": "crazy-formatter:toggle"
   },
   "repository": "https://github.com/pleonex/atom-crazy-formatter",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
+  "providedServices": {
     "formatter": {
       "versions": {
         "1.0.0": "provideFormatter"
