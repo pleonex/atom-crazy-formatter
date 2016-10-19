@@ -1,0 +1,26 @@
+{
+  "name": "crazy-formatter",
+  "main": "./lib/crazy-formatter",
+  "version": "0.0.0",
+  "description": "Crazy code formatting",
+  "keywords": [
+      "crazy",
+      "format",
+      "funny"
+  ],
+  "activationCommands": {
+    "atom-workspace": "crazy-formatter:toggle"
+  },
+  "repository": "https://github.com/pleonex/atom-crazy-formatter",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "formatter": {
+      "versions": {
+        "1.0.0": "provideFormatter"
+      }
+    }
+  }
+}
