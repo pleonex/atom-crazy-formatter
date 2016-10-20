@@ -42,7 +42,7 @@ module.exports = CrazyFormatter =
         newText[newText.length - 1] += '}'.repeat(end - start)
       else
         # Otherwise, pad the line with the special tokens at the end
-        newText.push(@padLine(lines[start], [';', '{']))
+        newText.push(@fixLine(lines[start], [';', '{']))
 
       start += if end == start then 1 else end - start
     return newText.join('\n')
@@ -54,7 +54,7 @@ module.exports = CrazyFormatter =
     return end
 
 
-  padLine: (line, tokens) ->
+  fixLine: (line, tokens) ->
     # Check if the line ends with a token
     lastChar = line[line.length - 1]
     token = tokens.find((x) -> x == lastChar)
@@ -72,6 +72,12 @@ module.exports = CrazyFormatter =
     fixPadding = atom.config.get 'crazy-formatter.fixPadding'
     return line if not fixPadding
     if token
-      return line.substring(0, line.length - 1).padEnd(80) + token
+      return @padEnd(line.substring(0, line.length - 1), 80) + token
     else
-      return line.padEnd(80)
+      return @padEnd(line, 80)
+
+  padEnd: (line, length) ->
+    return line if line.length >= length
+
+    padValue = " "
+    return line + padValue.repeat(length - line.length)
