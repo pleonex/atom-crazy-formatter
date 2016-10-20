@@ -25,7 +25,6 @@ module.exports = CrazyFormatter =
 
   provideFormatter: ->
     formatter =
-      dispose: ->
       selector: ['.source.c', '.source.cpp', '.source.java', '.source.cs'],
       getNewText: (text) =>
         new Promise (resolve) =>
