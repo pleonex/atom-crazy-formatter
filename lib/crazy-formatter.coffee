@@ -36,11 +36,20 @@ module.exports = CrazyFormatter =
     lines = text.split('\n')
     start = 0
     while start < lines.length
+      tokenLine = false
+
       # If several consecutive tokens detected, append to the previous line
       end = if fixPadding then @detectTokenRange(lines, start, '}') else start
       if end != start
         newText[newText.length - 1] += '}'.repeat(end - start)
-      else
+        tokenLine = true
+
+      end = if fixPadding then @detectTokenRange(lines, start, '{') else start
+      if end != start
+        newText[newText.length - 1] += '{'.repeat(end - start)
+        tokenLine = true
+
+      if !tokenLine
         # Otherwise, pad the line with the special tokens at the end
         newText.push(@fixLine(lines[start], [';', '{']))
 
